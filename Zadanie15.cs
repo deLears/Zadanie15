@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +10,22 @@ namespace ConsoleApp24
     {
         static void Main(string[] args)
         {
+            
+            ISeries series = new GeomProgression();
+            series.setStart(8);
+            series.getNext();
+            series.reset();
+
+            ISeries series2 = new ArithProgression();
+            series2.setStart(7);
+            series2.getNext();
+            series2.reset();
+
         }
 
     }
 
-    internal interface ISeries
+      interface ISeries
     {
         void setStart(int x);                                                //устанавливает начальное значение
         int getNext();                                                     //возвращает следующее число ряда
@@ -23,34 +34,47 @@ namespace ConsoleApp24
 
     class GeomProgression : ISeries
     {
-        int start = 0;
+        int start = 1;
         int val = 0;
         int progrkoeff = 1;
 
-        public int getNext(int progrkoeff)
-        {
-            throw new NotImplementedException();
 
+        public int getNext(int progrkoeff = 5)
+
+        {
+            this.progrkoeff = progrkoeff;
+            val = val * progrkoeff;
+            return val;
+        }
+
+        public int getNext()
+        {
+            this.progrkoeff = progrkoeff;
             val = val * progrkoeff;
             return val;
         }
 
         public void reset()
         {
-            throw new NotImplementedException();
             val = start;
             return;
         }
 
         public void setStart(int x, int progrkoeff)
         {
-            throw new NotImplementedException();
             start = x;
             val = x;
             return;
 
         }
 
+
+
+        public void setStart(int x)
+        {
+            return;
+        }
+    }
         class ArithProgression : ISeries
         {
             int start = 0;
@@ -59,28 +83,39 @@ namespace ConsoleApp24
 
             public int getNext(int progrkoeff)
             {
-                throw new NotImplementedException();
-
+                
                 val = val + progrkoeff;
+                return val;
+            }
+
+            public int getNext()
+            {
                 return val;
             }
 
             public void reset()
             {
-                throw new NotImplementedException();
+                
                 val = start;
                 return;
             }
 
             public void setStart(int x, int progrkoeff)
             {
-                throw new NotImplementedException();
                 start = x;
                 val = x;
                 return;
 
             }
 
+            public void setStart()
+            {
+                return;
+            }
+
+            public void setStart(int x)
+            {
+                return;
+            }
         }
     }
-}
